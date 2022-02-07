@@ -3,9 +3,9 @@
 #include <stdarg.h>
 #include <string.h>
 
-#include "GLESRenderer.hpp"
+#include "CubeRenderer.hpp"
 
-int GLESRenderer::GenCube(float scale, float **vertices, float **normals, float **texCoords, int **indices)
+int CubeRenderer::drawCube(float scale, float **vertices, float **normals, float **texCoords, int **indices)
 {
     int numVertices = 24;
     int numIndices = 36;

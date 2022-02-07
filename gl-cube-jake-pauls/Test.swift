@@ -1,5 +1,5 @@
 //
-// ViewRenderer.swift
+// Test.swift
 // Created by Jake Pauls
 //
 
@@ -17,3 +17,9 @@ enum UniformData: Int {
 
 // Initialize this with NUM_UNIFORMS?
 var uniforms = [GLint]()
+
+@objc class Test : NSObject {
+    func testFunc() {
+        NSLog("Testing Swift!")
+    }
+}

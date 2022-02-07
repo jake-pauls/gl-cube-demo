@@ -3,6 +3,8 @@
 
 #import <GLKit/GLKit.h>
 
+@class Test;
+
 @interface ViewRenderer : NSObject
 
 @property float rotAngle;
