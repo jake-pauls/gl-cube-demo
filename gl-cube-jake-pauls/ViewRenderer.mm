@@ -23,7 +23,7 @@ GLint uniforms[NUM_UNIFORMS];
     
     std::chrono::time_point<std::chrono::steady_clock> lastTime;
 
-    GLKMatrix4 mvp;
+    GLKMatrix4 baseMVPMatrix;
     GLKMatrix3 normalMatrix;
 
     float *vertices, *normals, *texCoords;
@@ -72,35 +72,36 @@ GLint uniforms[NUM_UNIFORMS];
     auto elapsedTime = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - lastTime).count();
     lastTime = currentTime;
     
-    // Auto-rotate the cube
+    // Auto-rotate the cube about the y-axis
     if (transform.isRotating)
     {
-        transform.rotY += 0.001f * elapsedTime;
+        transform.rotX += 0.001f * elapsedTime;
     }
 
     // Update translation matrices
-    mvp = GLKMatrix4Translate(GLKMatrix4Identity, 0.0, 0.0, -5.0);
-    mvp = GLKMatrix4Translate(mvp, transform.posX, transform.posY, 0.0);
+    baseMVPMatrix = GLKMatrix4Translate(GLKMatrix4Identity, 0.0, 0.0, -5.0);
+    baseMVPMatrix = GLKMatrix4Translate(baseMVPMatrix, transform.posX, transform.posY, 0.0);
     
     // Update rotation matrices
-    mvp = GLKMatrix4Rotate(mvp, transform.rotY, 0.0, 1.0, 0.0 );
-    mvp = GLKMatrix4Rotate(mvp, transform.rotX, 1.0, 0.0, 0.0 );
+    baseMVPMatrix = GLKMatrix4Rotate(baseMVPMatrix, transform.rotX, 0.0, 1.0, 0.0 );
+    baseMVPMatrix = GLKMatrix4Rotate(baseMVPMatrix, transform.rotY * -1.0f, 1.0, 0.0, 0.0 );
     
     // Update scaling matrices
-    mvp = GLKMatrix4Scale(mvp, transform.scale, transform.scale, transform.scale);
+    baseMVPMatrix = GLKMatrix4Scale(baseMVPMatrix, transform.scale, transform.scale, transform.scale);
     
     // Create and apply the normal matrix
-    normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(mvp), NULL);
+    normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(baseMVPMatrix), NULL);
 
+    // Define perspective view based on aspect ratio
     float aspect = (float) viewport.drawableWidth / (float) viewport.drawableHeight;
     GLKMatrix4 perspective = GLKMatrix4MakePerspective(60.0f * M_PI / 180.0f, aspect, 1.0f, 20.0f);
 
-    mvp = GLKMatrix4Multiply(perspective, mvp);
+    baseMVPMatrix = GLKMatrix4Multiply(perspective, baseMVPMatrix);
 }
 
 - (void)draw:(CGRect)drawRect
 {
-    GL_CALL(glUniformMatrix4fv(uniforms[UNIFORM_MVP_MATRIX], 1, FALSE, (const float *) mvp.m));
+    GL_CALL(glUniformMatrix4fv(uniforms[UNIFORM_MVP_MATRIX], 1, FALSE, (const float *) baseMVPMatrix.m));
     
     // Define gl viewport
     GL_CALL(glViewport(0, 0, (int) viewport.drawableWidth, (int) viewport.drawableHeight));
@@ -113,7 +114,7 @@ GLint uniforms[NUM_UNIFORMS];
     // Initialize color for vertex shader passthrough (green)
     GL_CALL(glVertexAttrib4f(1, 0.0f, 1.0f, 0.0f, 1.0f));
     
-    GL_CALL(glUniformMatrix4fv(uniforms[UNIFORM_MVP_MATRIX], 1, FALSE, (const float *)mvp.m));
+    GL_CALL(glUniformMatrix4fv(uniforms[UNIFORM_MVP_MATRIX], 1, FALSE, (const float *)baseMVPMatrix.m));
     GL_CALL(glDrawElements(GL_TRIANGLES, numIndices, GL_UNSIGNED_INT, indices));
 }
 

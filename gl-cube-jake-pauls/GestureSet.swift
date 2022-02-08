@@ -3,8 +3,6 @@
 //  Created by Jake Pauls
 //
 
-import Foundation
-
 class GestureSet {
     private var viewRenderer: ViewRenderer
     private var referencePoint: CGPoint
@@ -62,8 +60,8 @@ class GestureSet {
             
             // Single pan gesture (rotation) and double pan gesture (translation)
             if recognizer.numberOfTouches == 1 {
-                viewRenderer.transform.rotX += (touch.y - referencePoint.y) / 100
-                viewRenderer.transform.rotY += (touch.x - referencePoint.x) / 100
+                viewRenderer.transform.rotX += (touch.x - referencePoint.x) / 100
+                viewRenderer.transform.rotY += (touch.y - referencePoint.y) * -1 / 100
                 
                 self.setReferencePoint(x: touch.x, y: touch.y)
             } else if recognizer.numberOfTouches == 2 {
@@ -81,7 +79,7 @@ class GestureSet {
     @objc func pinchGesture(_ recognizer: UIPinchGestureRecognizer) {
         guard recognizer.view != nil else { return }
         
-        if !viewRenderer.transform.isRotating && recognizer.numberOfTouches == 2 {
+        if !viewRenderer.transform.isRotating {
             viewRenderer.transform.scale = recognizer.scale
         }
     }

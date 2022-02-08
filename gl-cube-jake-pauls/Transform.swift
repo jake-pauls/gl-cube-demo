@@ -23,4 +23,18 @@ import Foundation
      * Scaling (constant)
      */
     @objc var scale: CGFloat = 1.0
+    
+    /**
+     * Resets transform to default position
+     */
+    @objc func reset() {
+        self.posX = 0.0
+        self.posY = 0.0
+        
+        self.rotX = 0.0
+        self.rotY = 0.0
+        self.isRotating = false
+        
+        self.scale = 1.0
+    }
 }
