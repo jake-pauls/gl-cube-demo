@@ -3,12 +3,11 @@
 
 #import <GLKit/GLKit.h>
 
-@class Test;
+@class Transform;
 
 @interface ViewRenderer : NSObject
 
-@property float rotAngle;
-@property bool isRotating;
+@property Transform* transform;
 
 - (void)setup:(GLKView *)view;
 - (void)load;

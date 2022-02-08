@@ -3,6 +3,7 @@
 #include <chrono>
 
 #import "ViewRenderer.h"
+#import "gl_cube_jake_pauls-Swift.h"
 
 #include "Assert.hpp"
 #include "Shader.hpp"
@@ -17,7 +18,7 @@ enum
 GLint uniforms[NUM_UNIFORMS];
 
 @interface ViewRenderer() {
-    GLKView *viewport;
+    GLKView* viewport;
     CubeRenderer renderer;
     
     std::chrono::time_point<std::chrono::steady_clock> lastTime;
@@ -33,8 +34,7 @@ GLint uniforms[NUM_UNIFORMS];
 
 @implementation ViewRenderer
 
-@synthesize isRotating;
-@synthesize rotAngle;
+@synthesize transform;
 
 - (void)load
 {
@@ -59,9 +59,10 @@ GLint uniforms[NUM_UNIFORMS];
     GL_CALL(glClearColor(0.0f, 0.0f, 0.0f, 0.0f));
     GL_CALL(glEnable(GL_DEPTH_TEST));
     
-    // Initialize instance variables
-    rotAngle = 0.0f;
-    isRotating = 1;
+    // Initialize instance variables and rotate the transform
+    transform = [[Transform alloc] init];
+    transform.isRotating = 1;
+    
     lastTime = std::chrono::steady_clock::now();
 }
 
@@ -71,20 +72,22 @@ GLint uniforms[NUM_UNIFORMS];
     auto elapsedTime = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - lastTime).count();
     lastTime = currentTime;
     
-    if (isRotating)
+    
+    // Auto-rotate the cube
+    if (transform.isRotating)
     {
-        rotAngle += 0.001f * elapsedTime;
-        
-        if (rotAngle >= 360.0f)
-            rotAngle = 0.0f;
+        transform.rotY += 0.001f * elapsedTime;
     }
 
-    // Perspective view
     mvp = GLKMatrix4Translate(GLKMatrix4Identity, 0.0, 0.0, -5.0);
-    mvp = GLKMatrix4Rotate(mvp, rotAngle, 1.0, 0.0, 1.0 );
+    
+    // Update rotation matrices
+    mvp = GLKMatrix4Rotate(mvp, transform.rotY, 0.0, 1.0, 0.0 );
+    mvp = GLKMatrix4Rotate(mvp, transform.rotX, 1.0, 0.0, 0.0 );
+    
     normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(mvp), NULL);
 
-    float aspect = (float)viewport.drawableWidth / (float)viewport.drawableHeight;
+    float aspect = (float) viewport.drawableWidth / (float) viewport.drawableHeight;
     GLKMatrix4 perspective = GLKMatrix4MakePerspective(60.0f * M_PI / 180.0f, aspect, 1.0f, 20.0f);
 
     mvp = GLKMatrix4Multiply(perspective, mvp);
@@ -92,18 +95,20 @@ GLint uniforms[NUM_UNIFORMS];
 
 - (void)draw:(CGRect)drawRect
 {
-    glUniformMatrix4fv(uniforms[UNIFORM_MVP_MATRIX], 1, FALSE, (const float *) mvp.m);
+    GL_CALL(glUniformMatrix4fv(uniforms[UNIFORM_MVP_MATRIX], 1, FALSE, (const float *) mvp.m));
 
-    glViewport(0, 0, (int) viewport.drawableWidth, (int) viewport.drawableHeight);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    GL_CALL(glViewport(0, 0, (int) viewport.drawableWidth, (int) viewport.drawableHeight));
+    GL_CALL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), vertices);
-    glEnableVertexAttribArray(0);
-
-    glVertexAttrib4f(1, 1.0f, 0.0f, 0.0f, 1.0f);
+    // Setup vertex attributes
+    GL_CALL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), vertices));
+    GL_CALL(glEnableVertexAttribArray(0));
     
-    glUniformMatrix4fv(uniforms[UNIFORM_MVP_MATRIX], 1, FALSE, (const float *)mvp.m);
-    glDrawElements(GL_TRIANGLES, numIndices, GL_UNSIGNED_INT, indices);
+    // Initialize color for vertex shader passthrough (green)
+    GL_CALL(glVertexAttrib4f(1, 0.0f, 1.0f, 0.0f, 1.0f));
+    
+    GL_CALL(glUniformMatrix4fv(uniforms[UNIFORM_MVP_MATRIX], 1, FALSE, (const float *)mvp.m));
+    GL_CALL(glDrawElements(GL_TRIANGLES, numIndices, GL_UNSIGNED_INT, indices));
 }
 
 - (bool)setupShaders

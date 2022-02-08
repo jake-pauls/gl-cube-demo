@@ -10,7 +10,7 @@
 		9C2F822C27B1C4F500A89496 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C2F822A27B1C4F500A89496 /* Main.storyboard */; };
 		9C2F822E27B1C4F800A89496 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C2F822D27B1C4F800A89496 /* Assets.xcassets */; };
 		9C2F823127B1C4F800A89496 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C2F822F27B1C4F800A89496 /* LaunchScreen.storyboard */; };
-		9C2F824727B1C53400A89496 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2F823A27B1C53400A89496 /* Test.swift */; };
+		9C2F824727B1C53400A89496 /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2F823A27B1C53400A89496 /* Transform.swift */; };
 		9C2F824927B1C53400A89496 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2F823D27B1C53400A89496 /* SceneDelegate.swift */; };
 		9C2F824A27B1C53400A89496 /* ViewRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9C2F823E27B1C53400A89496 /* ViewRenderer.mm */; };
 		9C2F824B27B1C53400A89496 /* CubeRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C2F823F27B1C53400A89496 /* CubeRenderer.cpp */; };
@@ -30,7 +30,7 @@
 		9C2F823227B1C4F800A89496 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9C2F823827B1C53300A89496 /* gl-cube-jake-pauls-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "gl-cube-jake-pauls-Bridging-Header.h"; sourceTree = "<group>"; };
 		9C2F823927B1C53400A89496 /* Shader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Shader.hpp; sourceTree = "<group>"; };
-		9C2F823A27B1C53400A89496 /* Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
+		9C2F823A27B1C53400A89496 /* Transform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transform.swift; sourceTree = "<group>"; };
 		9C2F823C27B1C53400A89496 /* Assert.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Assert.hpp; sourceTree = "<group>"; };
 		9C2F823D27B1C53400A89496 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SceneDelegate.swift; path = "../../assignment1-jake-pauls/assignment1-jake-pauls/SceneDelegate.swift"; sourceTree = "<group>"; };
 		9C2F823E27B1C53400A89496 /* ViewRenderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewRenderer.mm; sourceTree = "<group>"; };
@@ -75,13 +75,13 @@
 		9C2F822327B1C4F500A89496 /* gl-cube-jake-pauls */ = {
 			isa = PBXGroup;
 			children = (
-				9C2F822A27B1C4F500A89496 /* Main.storyboard */,
 				9C2F822D27B1C4F800A89496 /* Assets.xcassets */,
+				9C2F822A27B1C4F500A89496 /* Main.storyboard */,
 				9C2F822F27B1C4F800A89496 /* LaunchScreen.storyboard */,
 				9C2F823227B1C4F800A89496 /* Info.plist */,
 				9C2F825127B1C60600A89496 /* res */,
 				9C2F824227B1C53400A89496 /* AppDelegate.swift */,
-				9C2F823A27B1C53400A89496 /* Test.swift */,
+				9C2F823A27B1C53400A89496 /* Transform.swift */,
 				9C2F823D27B1C53400A89496 /* SceneDelegate.swift */,
 				9C2F824627B1C53400A89496 /* ViewController.swift */,
 				9C2F824527B1C53400A89496 /* Assert.cpp */,
@@ -190,7 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C2F824D27B1C53400A89496 /* AppDelegate.swift in Sources */,
-				9C2F824727B1C53400A89496 /* Test.swift in Sources */,
+				9C2F824727B1C53400A89496 /* Transform.swift in Sources */,
 				9C2F824927B1C53400A89496 /* SceneDelegate.swift in Sources */,
 				9C2F824A27B1C53400A89496 /* ViewRenderer.mm in Sources */,
 				9C2F824B27B1C53400A89496 /* CubeRenderer.cpp in Sources */,
