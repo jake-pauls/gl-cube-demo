@@ -72,19 +72,24 @@ GLint uniforms[NUM_UNIFORMS];
     auto elapsedTime = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - lastTime).count();
     lastTime = currentTime;
     
-    
     // Auto-rotate the cube
     if (transform.isRotating)
     {
         transform.rotY += 0.001f * elapsedTime;
     }
 
+    // Update translation matrices
     mvp = GLKMatrix4Translate(GLKMatrix4Identity, 0.0, 0.0, -5.0);
+    mvp = GLKMatrix4Translate(mvp, transform.posX, transform.posY, 0.0);
     
     // Update rotation matrices
     mvp = GLKMatrix4Rotate(mvp, transform.rotY, 0.0, 1.0, 0.0 );
     mvp = GLKMatrix4Rotate(mvp, transform.rotX, 1.0, 0.0, 0.0 );
     
+    // Update scaling matrices
+    mvp = GLKMatrix4Scale(mvp, transform.scale, transform.scale, transform.scale);
+    
+    // Create and apply the normal matrix
     normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(mvp), NULL);
 
     float aspect = (float) viewport.drawableWidth / (float) viewport.drawableHeight;
@@ -96,7 +101,8 @@ GLint uniforms[NUM_UNIFORMS];
 - (void)draw:(CGRect)drawRect
 {
     GL_CALL(glUniformMatrix4fv(uniforms[UNIFORM_MVP_MATRIX], 1, FALSE, (const float *) mvp.m));
-
+    
+    // Define gl viewport
     GL_CALL(glViewport(0, 0, (int) viewport.drawableWidth, (int) viewport.drawableHeight));
     GL_CALL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 

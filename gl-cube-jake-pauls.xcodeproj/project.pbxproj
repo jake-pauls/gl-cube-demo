@@ -20,6 +20,7 @@
 		9C2F824F27B1C53400A89496 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2F824627B1C53400A89496 /* ViewController.swift */; };
 		9C2F825527B1C60600A89496 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 9C2F825327B1C60600A89496 /* Shader.fsh */; };
 		9C2F825627B1C60600A89496 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 9C2F825427B1C60600A89496 /* Shader.vsh */; };
+		9C99BC9027B224C80083C393 /* GestureSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C99BC8F27B224C70083C393 /* GestureSet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		9C2F824627B1C53400A89496 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../../../../../Downloads/glesbasicfiles/ViewController.swift; sourceTree = "<group>"; };
 		9C2F825327B1C60600A89496 /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
 		9C2F825427B1C60600A89496 /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
+		9C99BC8F27B224C70083C393 /* GestureSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureSet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 				9C2F823A27B1C53400A89496 /* Transform.swift */,
 				9C2F823D27B1C53400A89496 /* SceneDelegate.swift */,
 				9C2F824627B1C53400A89496 /* ViewController.swift */,
+				9C99BC8F27B224C70083C393 /* GestureSet.swift */,
 				9C2F824527B1C53400A89496 /* Assert.cpp */,
 				9C2F823C27B1C53400A89496 /* Assert.hpp */,
 				9C2F823F27B1C53400A89496 /* CubeRenderer.cpp */,
@@ -192,6 +195,7 @@
 				9C2F824D27B1C53400A89496 /* AppDelegate.swift in Sources */,
 				9C2F824727B1C53400A89496 /* Transform.swift in Sources */,
 				9C2F824927B1C53400A89496 /* SceneDelegate.swift in Sources */,
+				9C99BC9027B224C80083C393 /* GestureSet.swift in Sources */,
 				9C2F824A27B1C53400A89496 /* ViewRenderer.mm in Sources */,
 				9C2F824B27B1C53400A89496 /* CubeRenderer.cpp in Sources */,
 				9C2F824C27B1C53400A89496 /* Shader.cpp in Sources */,

@@ -98,7 +98,7 @@ int CubeRenderer::drawCube(float scale, float **vertices, float **normals, float
     if (vertices != NULL)
     {
         *vertices = (float *) malloc(sizeof(float) * 3 * numVertices);
-        memcpy (*vertices, cubeVerts, sizeof(cubeVerts));
+        memcpy(*vertices, cubeVerts, sizeof(cubeVerts));
         
         for (int i = 0; i < numVertices * 3; i++)
         {
@@ -109,13 +109,13 @@ int CubeRenderer::drawCube(float scale, float **vertices, float **normals, float
     if (normals != NULL)
     {
         *normals = (float *) malloc(sizeof(float) * 3 * numVertices );
-        memcpy (*normals, cubeNormals, sizeof(cubeNormals));
+        memcpy(*normals, cubeNormals, sizeof(cubeNormals));
     }
     
     if (texCoords != NULL)
     {
         *texCoords = (float *) malloc(sizeof(float) * 2 * numVertices);
-        memcpy (*texCoords, cubeTex, sizeof(cubeTex)) ;
+        memcpy(*texCoords, cubeTex, sizeof(cubeTex)) ;
     }
     
     // Generate the indices
