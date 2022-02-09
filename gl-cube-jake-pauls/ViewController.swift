@@ -18,6 +18,9 @@ class ViewController: GLKViewController {
     private var referencePoint: CGPoint!
     private var gestureSet: GestureSet!
     
+    /**
+     * UI Elements & Functionality
+     */
     @IBOutlet weak var positionLabel: UILabel!
     @IBOutlet weak var rotationLabel: UILabel!
     
@@ -39,6 +42,9 @@ class ViewController: GLKViewController {
         positionLabel.text = posString
     }
     
+    /**
+     * GL View & Elements
+     */
     private func setupGLView() {
         context = EAGLContext(api: .openGLES3)
         EAGLContext.setCurrent(context)
@@ -63,7 +69,6 @@ class ViewController: GLKViewController {
         
         // Setup gesture recognizers for the UIView
         gestureSet.setupGestureRecognizers(view: view)
-        
     }
     
     override func glkView(_ view: GLKView, drawIn rect: CGRect) {

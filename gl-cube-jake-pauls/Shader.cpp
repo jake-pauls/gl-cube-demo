@@ -1,3 +1,8 @@
+//
+// Shader.cpp
+// Created by Jake Pauls
+//
+
 #include <iostream>
 #include <fstream>
 #include <sstream>

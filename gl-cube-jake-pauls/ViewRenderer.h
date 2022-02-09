@@ -1,3 +1,8 @@
+//
+// ViewRenderer.h
+// Created by Jake Pauls
+//
+
 #ifndef Renderer_h
 #define Renderer_h
 

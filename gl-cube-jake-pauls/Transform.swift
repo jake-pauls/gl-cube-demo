@@ -3,8 +3,6 @@
 // Created by Jake Pauls
 //
 
-import Foundation
-
 @objc class Transform : NSObject {
     /**
      * Position

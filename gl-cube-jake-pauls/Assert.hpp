@@ -1,3 +1,8 @@
+//
+// Assert.hpp
+// Created by Jake Pauls
+//
+
 #ifndef Assert_hpp
 #define Assert_hpp
 

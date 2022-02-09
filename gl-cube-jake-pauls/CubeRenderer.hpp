@@ -1,3 +1,8 @@
+//
+// CubeRenderer.hpp
+// Created by Jake Pauls
+//
+
 #ifndef CubeRenderer_hpp
 #define CubeRenderer_hpp
 

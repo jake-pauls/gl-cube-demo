@@ -1,3 +1,8 @@
+//
+// ViewRenderer.mm
+// Created by Jake Pauls
+//
+
 #import <Foundation/Foundation.h>
 #import <GLKit/GLKit.h>
 #include <chrono>
@@ -43,13 +48,12 @@ GLint uniforms[NUM_UNIFORMS];
 
 - (void)setup:(GLKView *)view
 {
-    // Configure view context
+    // Configure the view context
     view.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES3];
     ASSERT(view.context);
     
     [EAGLContext setCurrentContext:view.context];
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
-    
     viewport = view;
     
     // Setup shaders
@@ -59,7 +63,7 @@ GLint uniforms[NUM_UNIFORMS];
     GL_CALL(glClearColor(0.0f, 0.0f, 0.0f, 0.0f));
     GL_CALL(glEnable(GL_DEPTH_TEST));
     
-    // Initialize instance variables and rotate the transform
+    // Initialize and rotate the transform
     transform = [[Transform alloc] init];
     transform.isRotating = 1;
     
@@ -93,8 +97,8 @@ GLint uniforms[NUM_UNIFORMS];
     normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(baseMVPMatrix), NULL);
 
     // Define perspective view based on aspect ratio
-    float aspect = (float) viewport.drawableWidth / (float) viewport.drawableHeight;
-    GLKMatrix4 perspective = GLKMatrix4MakePerspective(60.0f * M_PI / 180.0f, aspect, 1.0f, 20.0f);
+    float aspectRatio = (float) viewport.drawableWidth / (float) viewport.drawableHeight;
+    GLKMatrix4 perspective = GLKMatrix4MakePerspective(60.0f * M_PI / 180.0f, aspectRatio, 1.0f, 20.0f);
 
     baseMVPMatrix = GLKMatrix4Multiply(perspective, baseMVPMatrix);
 }

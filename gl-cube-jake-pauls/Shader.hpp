@@ -1,3 +1,8 @@
+//
+// Shader.hpp
+// Created by Jake Pauls
+//
+
 #ifndef Shader_hpp
 #define Shader_hpp
 

@@ -1,3 +1,9 @@
+//
+// CubeRenderer.cpp
+// Adapted from 'GLESRenderer.cpp'
+// File created by Jake Pauls
+// 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
